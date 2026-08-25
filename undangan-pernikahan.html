@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d4c0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            max-width: 600px;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #d4a574 0%, #c49060 100%);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5em;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .ornament {
+            font-size: 1.5em;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 10px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .guest-name {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fef9f3 0%, #f5e6d3 100%);
+            border-radius: 10px;
+            border-left: 4px solid #d4a574;
+        }
+
+        .guest-label {
+            font-size: 0.9em;
+            color: #8b7355;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .guest-name-input {
+            font-family: 'Lora', serif;
+            font-size: 1.8em;
+            color: #5a4a3a;
+            text-align: center;
+            border: none;
+            background: transparent;
+            padding: 10px;
+            width: 100%;
+            cursor: text;
+            font-weight: 600;
+        }
+
+        .guest-name-input:focus {
+            outline: none;
+            color: #d4a574;
+        }
+
+        .invitation-text {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Lora', serif;
+        }
+
+        .invitation-text p {
+            color: #6b5d52;
+            line-height: 1.8;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .couple-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2em;
+            color: #d4a574;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .couple-name {
+            display: inline;
+            margin: 0 8px;
+        }
+
+        .separator {
+            text-align: center;
+            font-size: 1.5em;
+            color: #d4a574;
+            margin: 20px 0;
+        }
+
+        .detail-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #fef9f3;
+            border-radius: 10px;
+        }
+
+        .detail-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8em;
+            color: #d4a574;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .detail-item {
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .detail-label {
+            color: #8b7355;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            color: #5a4a3a;
+            font-size: 1.1em;
+            font-family: 'Lora', serif;
+        }
+
+        .acara-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 500px) {
+            .acara-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .maps-link {
+            display: inline-block;
+            background: #d4a574;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.95em;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .maps-link:hover {
+            background: #c49060;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f5e6d3;
+            color: #8b7355;
+            font-size: 0.95em;
+            border-top: 1px solid #e8d4c0;
+        }
+
+        .music-control {
+            text-align: center;
+            padding: 15px;
+            background: #f5e6d3;
+        }
+
+        .music-control button {
+            background: #d4a574;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+
+        .music-control button:hover {
+            background: #c49060;
+        }
+
+        .music-control button.playing {
+            background: #c49060;
+        }
+
+        .edit-section {
+            padding: 15px;
+            background: #fff3e0;
+            border-left: 4px solid #d4a574;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .edit-label {
+            font-size: 0.85em;
+            color: #8b7355;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .edit-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d4a574;
+            border-radius: 5px;
+            font-size: 1em;
+            font-family: 'Lora', serif;
+            margin-bottom: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .button-group button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+
+        .btn-reset {
+            background: #e8d4c0;
+            color: #5a4a3a;
+        }
+
+        .btn-reset:hover {
+            background: #d4a574;
+            color: white;
+        }
+
+        .btn-print {
+            background: #d4a574;
+            color: white;
+        }
+
+        .btn-print:hover {
+            background: #c49060;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .edit-section,
+            .music-control {
+                display: none;
+            }
+        }
+
+        .hearts {
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Pernikahan</h1>
+            <div class="ornament">✿ ❀ ✿</div>
+        </div>
+
+        <div class="content">
+            <!-- Edit Section -->
+            <div class="edit-section">
+                <label class="edit-label">Edit Informasi Undangan</label>
+                
+                <label class="edit-label">Nama Pengantin Pria</label>
+                <input type="text" id="groomName" class="edit-input" value="Yobi Febrizal, S.Pd" placeholder="Nama Pengantin Pria">
+                
+                <label class="edit-label">Nama Pengantin Wanita</label>
+                <input type="text" id="brideName" class="edit-input" value="Retno Nidya Putri, S.T" placeholder="Nama Pengantin Wanita">
+                
+                <div class="button-group">
+                    <button class="btn-reset" onclick="resetData()">Reset</button>
+                    <button class="btn-print" onclick="window.print()">🖨️ Cetak</button>
+                </div>
+            </div>
+
+            <!-- Guest Name -->
+            <div class="guest-name">
+                <span class="guest-label">Yth. Bapak / Ibu / Saudara/i</span>
+                <input type="text" id="guestName" class="guest-name-input" value="[Nama Tamu Undangan]" placeholder="Masukkan nama Anda">
+            </div>
+
+            <!-- Invitation Text -->
+            <div class="invitation-text">
+                <p>Dengan segenap hati kami mengundang Bapak/Ibu/Saudara/i untuk hadir merayakan momen bahagia kami</p>
+                
+                <div class="couple-names">
+                    <span class="couple-name" id="displayGroom">Yobi Febrizal</span>
+                    <span class="separator">&</span>
+                    <span class="couple-name" id="displayBride">Retno Nidya Putri</span>
+                </div>
+
+                <p style="margin-top: 20px; font-style: italic; color: #8b7355;">
+                    Semoga doa dan restu Bapak/Ibu turut menyertai dan mewarnai perjalanan hidup kami
+                </p>
+            </div>
+
+            <!-- Musik Control -->
+            <div class="music-control">
+                <button id="musicBtn" onclick="toggleMusic()">🎵 Putar Musik</button>
+                <audio id="audio" loop style="display:none;">
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+
+            <!-- Akad Section -->
+            <div class="detail-section">
+                <div class="detail-title">Akad Nikah</div>
+                <div class="acara-grid">
+                    <div>
+                        <span class="detail-label">📅 Tanggal</span>
+                        <span class="detail-value">11 Oktober 2026</span>
+                    </div>
+                    <div>
+                        <span class="detail-label">🕐 Waktu</span>
+                        <span class="detail-value">11:00 - Selesai</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">📍 Lokasi</span>
+                    <span class="detail-value">Rumah Mempelai Wanita</span>
+                    <span class="detail-value" style="font-size: 0.95em; display: block; margin-top: 5px;">
+                        Sampan, Desa Punggung Lading<br>Kecamatan Pariaman Selatan, Kota Pariaman
+                    </span>
+                    <a href="https://maps.app.goo.gl/kNTYNssXiX9LPFnn8?g_st=aw" target="_blank" class="maps-link">
+                        📍 Buka di Maps
+                    </a>
+                </div>
+            </div>
+
+            <!-- Resepsi Section -->
+            <div class="detail-section">
+                <div class="detail-title">Resepsi</div>
+                <div class="acara-grid">
+                    <div>
+                        <span class="detail-label">📅 Tanggal</span>
+                        <span class="detail-value">12 Oktober 2026</span>
+                    </div>
+                    <div>
+                        <span class="detail-label">🕐 Waktu</span>
+                        <span class="detail-value">10:00 - Selesai</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">📍 Lokasi</span>
+                    <span class="detail-value">Rumah Mempelai Wanita</span>
+                    <span class="detail-value" style="font-size: 0.95em; display: block; margin-top: 5px;">
+                        Sampan, Desa Punggung Lading<br>Kecamatan Pariaman Selatan, Kota Pariaman
+                    </span>
+                    <a href="https://maps.app.goo.gl/kNTYNssXiX9LPFnn8?g_st=aw" target="_blank" class="maps-link">
+                        📍 Buka di Maps
+                    </a>
+                </div>
+            </div>
+
+            <!-- Kontak Section -->
+            <div class="detail-section">
+                <div class="detail-title">Konfirmasi</div>
+                <div class="detail-item">
+                    <span class="detail-label">📱 Hubungi Kami</span>
+                    <a href="https://wa.me/6285263341300" style="color: #d4a574; text-decoration: none; font-size: 1.1em;">
+                        WhatsApp: 0852 6334 1300
+                    </a>
+                </div>
+                <p style="margin-top: 15px; text-align: center; color: #8b7355; font-size: 0.95em;">
+                    Mohon konfirmasi kehadiran Anda sebelum tanggal 5 Oktober 2026
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><span class="hearts">💑</span> Kami Mengharapkan Kehadiran Anda <span class="hearts">💑</span></p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Terimakasih atas Doa dan Restu Anda</p>
+        </div>
+    </div>
+
+    <script>
+        // Update nama pengantin
+        document.getElementById('groomName').addEventListener('change', function() {
+            document.getElementById('displayGroom').textContent = this.value.split(',')[0];
+        });
+
+        document.getElementById('brideName').addEventListener('change', function() {
+            document.getElementById('displayBride').textContent = this.value.split(',')[0];
+        });
+
+        // Music toggle
+        function toggleMusic() {
+            const audio = document.getElementById('audio');
+            const btn = document.getElementById('musicBtn');
+            
+            if (audio.paused) {
+                audio.play();
+                btn.textContent = '⏸️ Pause Musik';
+                btn.classList.add('playing');
+            } else {
+                audio.pause();
+                btn.textContent = '🎵 Putar Musik';
+                btn.classList.remove('playing');
+            }
+        }
+
+        // Reset data
+        function resetData() {
+            document.getElementById('guestName').value = '[Nama Tamu Undangan]';
+            document.getElementById('groomName').value = 'Yobi Febrizal, S.Pd';
+            document.getElementById('brideName').value = 'Retno Nidya Putri, S.T';
+            document.getElementById('displayGroom').textContent = 'Yobi Febrizal';
+            document.getElementById('displayBride').textContent = 'Retno Nidya Putri';
+        }
+
+        // Auto-save to localStorage
+        document.getElementById('guestName').addEventListener('change', function() {
+            localStorage.setItem('guestName', this.value);
+        });
+
+        // Load from localStorage
+        window.addEventListener('load', function() {
+            const savedGuest = localStorage.getItem('guestName');
+            if (savedGuest) {
+                document.getElementById('guestName').value = savedGuest;
+            }
+        });
+    </script>
+</body>
+</html>
